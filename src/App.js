@@ -1,24 +1,48 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Alert from './components/Alert';
+import Buy from './components/Buy';
+import Sell from './components/Sell';
+import { useState } from 'react';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 function App() {
+
+  const [alert, setalert] = useState(null);
+
+  const showAlert = (message, type) => {
+    setalert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setalert(null);
+    }, 2000);
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        < Navbar showAlert={showAlert} />
+        < Alert alert={alert} />
+        <Switch>
+          <Route exact path="/">< Home /></Route>
+          <Route exact path="/marketplace">< Buy /></Route>
+          <Route exact path="/marketplace/sell">< Sell /></Route>
+          <Route exact path="/login">< Login showAlert={showAlert} /></Route>
+          <Route exact path="/signup">< Signup showAlert={showAlert} /></Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 
