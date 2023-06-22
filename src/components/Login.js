@@ -1,18 +1,18 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 
 const Login = (props) => {
 
     useEffect(() => {
-        document.title = "UnityServe-Login" ;
+        document.title = "UnityServe-Login";
         // eslint-disable-next-line
     }, [])
 
-    const [credentials, setCredentials] = useState({email: "", password: ""})
+    const [credentials, setCredentials] = useState({ email: "", password: "" })
     let history = useHistory()
 
-    const handleSubmit=async(e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch("http://localhost:7000/api/auth/login", {
             method: 'POST',
@@ -23,18 +23,18 @@ const Login = (props) => {
         })
         const json = await response.json();
         console.log(json)
-        if(json.success){
-            localStorage.setItem('token',json.authtoken)
+        if (json.success) {
+            localStorage.setItem('token', json.authtoken)
             history.push('/')
             props.showAlert("Logged in Successfully", "success")
         }
-        else{
+        else {
             props.showAlert("Invalid Credentials", "danger")
         }
     }
 
-    const onChange=(e)=>{
-        setCredentials({...credentials,[e.target.name]:e.target.value})
+    const onChange = (e) => {
+        setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
     return (

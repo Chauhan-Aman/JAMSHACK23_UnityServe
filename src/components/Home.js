@@ -14,7 +14,9 @@ const Home = () => {
                 <div className="homepage_intro">
                     <img src="./img/heading.png" alt="" className="homepage_intro_heading" />
                     <p className="lead pb-4">SEIZE THE CAMPUS MARKET: UNITE, THRIVE, AND TRANSACT WITH EASE</p>
-                    <Link to="/"><button type="button" className="btn btn-outline-info py-2 mx-1" id="start_button_explore">EXPLORE</button></Link>
+                    {!localStorage.getItem('token')?
+                    <button type="button" className="btn btn-outline-info py-2 mx-1" id="start_button_explore" disabled>EXPLORE</button>:
+                    <Link to="/marketplace"><button type="button" className="btn btn-outline-info py-2 mx-1" id="start_button_explore">EXPLORE</button></Link>}
                     {!localStorage.getItem('token')?
                     <Link to="/login"><button type="button" className="btn btn-outline-info py-2 mx-1" id="start_button">LOGIN</button></Link>:""}
                 </div>

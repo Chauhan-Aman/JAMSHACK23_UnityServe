@@ -4,9 +4,10 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Alert from './components/Alert';
-import Buy from './components/Buy';
+import MarketPlace from './components/MarketPlace';
 import Sell from './components/Sell';
 import { useState } from 'react';
+import ProductState from './context/products/ProductState';
 
 import {
   BrowserRouter as Router,
@@ -31,17 +32,19 @@ function App() {
 
   return (
     <>
-      <Router>
-        < Navbar showAlert={showAlert} />
-        < Alert alert={alert} />
-        <Switch>
-          <Route exact path="/">< Home /></Route>
-          <Route exact path="/marketplace">< Buy /></Route>
-          <Route exact path="/marketplace/sell">< Sell /></Route>
-          <Route exact path="/login">< Login showAlert={showAlert} /></Route>
-          <Route exact path="/signup">< Signup showAlert={showAlert} /></Route>
-        </Switch>
-      </Router>
+      <ProductState>
+        <Router>
+          < Navbar showAlert={showAlert} />
+          < Alert alert={alert} />
+          <Switch>
+            <Route exact path="/">< Home /></Route>
+            <Route exact path="/marketplace">< MarketPlace /></Route>
+            <Route exact path="/marketplace/sell">< Sell showAlert={showAlert} /></Route>
+            <Route exact path="/login">< Login showAlert={showAlert} /></Route>
+            <Route exact path="/signup">< Signup showAlert={showAlert} /></Route>
+          </Switch>
+        </Router>
+      </ProductState>
     </>
   );
 }

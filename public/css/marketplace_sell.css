@@ -168,7 +168,8 @@ body {
     color: #476331;
 }
 #product_description{
-    height: 297px;
+    max-height: 297px;
+    min-height: 297px;
     width: 400px !important;
 }
 #product_name{
@@ -179,9 +180,10 @@ body {
     margin-inline-end: 50px;
 }
 
-/* .Amount{
-    padding: 10px 50px!important;
-} */
+.Amount{
+    padding: 8.5px 10px 12.5px 10px!important;
+    width: 140px;
+}
 
 #submit_button{
     padding: 10px 50px;
