@@ -1,19 +1,64 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import ProductContext from '../context/products/ProductContext'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 
 const Sell = (props) => {
+
+    useEffect(() => {
+        document.title = "UnityServe-Sell";
+        // eslint-disable-next-line
+    }, [])
+
+    const [image, SetImage] = useState("")
+
+    const convertToBase64 = (e) => {
+        console.log(e);
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0])
+        reader.onload = () => {
+            console.log(reader.result)  // base64encoded string
+            SetImage(reader.result)
+        };
+        reader.onerror = error => {
+            console.log("Error: ", error)
+        }
+    }
+
+    let history = useHistory()
+
+
+    const UploadImage = async () => {
+        const response = await fetch("http://localhost:7000/api/product/upload-image", {
+            method: "POST",
+            crossDomain: true,
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "auth-token": localStorage.getItem('token')
+            },
+            body: JSON.stringify({
+                base64: image
+            })
+        })
+        const json = await response.json()
+        console.log(json)
+    }
 
     const context = useContext(ProductContext);
     const { addProduct } = context
 
-    const [product, setProduct] = useState({ Product_Name: "", Description: "", Image: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
+    const [product, setProduct] = useState({ Product_Name: "", Description: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
 
     const handleClick = (e) => {
+        // confirm("Do you want to Continue?")
         e.preventDefault()
-        addProduct(product.Product_Name, product.Description, product.Image, product.Owner_Name, product.College, product.Phone, product.Email, product.Instagram, product.Address, product.Amount)
-        setProduct({ Product_Name: "", Description: "", Image: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
+        addProduct(product.Product_Name, product.Description, product.Owner_Name, product.College, product.Phone, product.Email, product.Instagram, product.Address, product.Amount)
+
+        setProduct({ Product_Name: "", Description: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
         props.showAlert("Added Successfully", "success")
+        history.push('/marketplace')
     }
 
     const onchange = (e) => {
@@ -47,7 +92,7 @@ const Sell = (props) => {
                     <p className="lead">Generate a post to sell a product/service</p>
                 </div>
                 <div className="sell_form">
-                    <form action="">
+                    <form onSubmit={handleClick} encType='multipart/form-data'>  {/* encType - for uploading*/}
                         <div className="product_section mx-2">
                             <div className="col">
                                 <div className="sell_product_name my-4">
@@ -60,7 +105,9 @@ const Sell = (props) => {
                                 </div>
                                 <div className="sell_product_image my-4">
                                     <p className="lead">Upload Image</p>
-                                    <input type="file" name='Image' alt="product image" placeholder="Upload product image" className="inputbox" id="image_upload" onChange={onchange} value={product.Image}  />
+                                    <input type="file" accept='.png, .jpg, .jpeg' alt="product image" className="inputbox" id="image_upload" onChange={convertToBase64} />
+                                    {image === "" || image === null ? "" : <img width={30} height={30} src={image} style={{ margin: "0px 10px" }} alt='' />}
+                                    {/* <button onClick={UploadImage}>Upload</button> */}
                                 </div>
                             </div>
                         </div>
@@ -68,7 +115,7 @@ const Sell = (props) => {
                             <div className="col">
                                 <div className="seller_name my-4">
                                     <p className="lead">Your Name</p>
-                                    <input type="text" name="Owner_Name" id="" placeholder="SELLER NAME" required className="inputbox" onChange={onchange} value={product.Owner_Name}  />
+                                    <input type="text" name="Owner_Name" id="" placeholder="SELLER NAME" required className="inputbox" onChange={onchange} value={product.Owner_Name} />
                                 </div>
                                 <div className="seller_college my-4">
                                     <p className="lead">College Name</p>
@@ -94,7 +141,7 @@ const Sell = (props) => {
                         </div>
                         <div className="submit mt-3">
                             <input type="text" name="Amount" id="" placeholder="Amount" className="inputbox mx-2 Amount me-2" onChange={onchange} value={product.Amount} required />
-                            <button type="submit" className="btn btn-outline-info text-xs my-1" id="submit_button" onClick={handleClick}>SELL</button>
+                            <button type="submit" className="btn btn-outline-info text-xs my-1" id="submit_button" onClick={UploadImage}>SELL</button>
                         </div>
 
 

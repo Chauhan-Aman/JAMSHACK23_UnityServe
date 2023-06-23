@@ -14,6 +14,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import ImageUpload from './components/ImageUpload';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
             <Route exact path="/marketplace/sell">< Sell showAlert={showAlert} /></Route>
             <Route exact path="/login">< Login showAlert={showAlert} /></Route>
             <Route exact path="/signup">< Signup showAlert={showAlert} /></Route>
+            <Route exact path="/upload">< ImageUpload /></Route>
           </Switch>
         </Router>
       </ProductState>

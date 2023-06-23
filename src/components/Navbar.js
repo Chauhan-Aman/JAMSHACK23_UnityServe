@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 
 const Navbar = (props) => {
 
-    // let location = useLocation();
+    let location = useLocation();
     let history = useHistory();
-    
+
     const handleLogout = () => {
         localStorage.removeItem('token')
         history.push('/login')
@@ -29,7 +29,7 @@ const Navbar = (props) => {
 
                         <ul className="navbar-nav ms-auto mx-2">
                             <li className="nav-item px-2">
-                                <Link className="nav-link" aria-current="page" to="/" id="current">HOME</Link>
+                                <Link className="nav-link" aria-current="page" to="/" id={`${location.pathname === "/" ? "current" : ""}`}>HOME</Link>
                             </li>
                             <li className="nav-item px-2">
                                 <a className="nav-link" href="#vision">VISION</a>
@@ -38,7 +38,8 @@ const Navbar = (props) => {
                                 <a className="nav-link" href="#team">THE TEAM</a>
                             </li>
                             <li className="nav-item px-2">
-                                <Link className="nav-link" to="/marketplace" id="marketplace_nav">MARKETPLACE</Link>
+                                {!localStorage.getItem('token') ? <Link className="nav-link" to="/login" id={`${location.pathname === "/login" ? "current" : ""}`} style={{ Cursor: "not-allowed" }}>MARKETPLACE</Link> :
+                                    <Link className="nav-link" to="/marketplace" id={`${location.pathname === "/marketplace" ? "current" : ""}`} style={{ Cursor: "pointer" }}>MARKETPLACE</Link>}
                             </li>
                             <div className="nav-item mx-2">
                                 {!localStorage.getItem('token') ? <form className="d-flex" role="search">

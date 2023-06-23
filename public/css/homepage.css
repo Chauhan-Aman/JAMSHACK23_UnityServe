@@ -94,9 +94,6 @@ body {
     cursor: pointer;
 }
 
-#marketplace_nav {
-    cursor: not-allowed !important;
-}
 
 .bgCover1 {
     background-image: url(../img/bg1.png);
@@ -140,9 +137,6 @@ body {
         width: 15rem;
     }
 }
-
-
-
 
 .break {
     width: 100%;
@@ -264,4 +258,21 @@ body {
 
 .member_img {
     width: 20rem;
+}
+
+.wh-custom-css {
+    width: 360px !important;
+    height: 350px !important;
+    display: block;
+    justify-content: space-between !important;
+}
+
+.flex-custom {
+    display: flex;
+    flex-direction: row;
+}
+
+.jus-custom {
+    text-align: justify;
+    /* text-justify: inter-word; */
 }

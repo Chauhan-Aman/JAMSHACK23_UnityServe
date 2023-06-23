@@ -14,11 +14,6 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
-    Image: {
-        // required: true,
-        Type: String,
-        // default: "https://picsum.photos/200/300"
-    },
     Owner_Name: {
         type: String,
         required: true

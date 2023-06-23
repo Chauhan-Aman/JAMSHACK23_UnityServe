@@ -1,13 +1,25 @@
 const express = require('express')
 const router = express.Router()
 const Product = require('../models/Product')
+const Images = require('../models/Image')
 const fetchuser = require('../middleware/fetchuser')
 const { body, validationResult } = require('express-validator')
 
 // Route1: Get all Selling items using: GET "/api/product/fetchallproducts" . Login required
-router.get('/fetchallproducts', fetchuser, async (req, res) => {
+// router.get('/fetchallproducts', fetchuser, async (req, res) => {
+//     try {
+//         const products = await Product.find({ user: req.user.id })
+//         res.json(products)
+//     } catch (error) {
+//         console.error(error.message)
+//         res.status(500).send("Internal Server Error")
+//     }
+// })
+
+// No user specific
+router.get('/fetchallproducts', async (req, res) => {
     try {
-        const products = await Product.find({ user: req.user.id })
+        const products = await Product.find({})
         res.json(products)
     } catch (error) {
         console.error(error.message)
@@ -24,14 +36,14 @@ router.post('/addproduct', fetchuser, [
 ], async (req, res) => {
 
     try {
-        const { Product_Name, Description, Image, Owner_Name, College, Phone, Email, Instagram, Address, Amount } = req.body
+        const { Product_Name, Description, Owner_Name, College, Phone, Email, Instagram, Address, Amount } = req.body
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
         }
 
         const product = new Product({
-            Product_Name, Description, Owner_Name, Image, College, Phone, Email, Instagram, Address, Amount, user: req.user.id
+            Product_Name, Description, Owner_Name, College, Phone, Email, Instagram, Address, Amount, user: req.user.id
         })
         const SavedProduct = await product.save()
         res.json(SavedProduct)
@@ -42,7 +54,37 @@ router.post('/addproduct', fetchuser, [
     }
 })
 
+//Route to upload image using POST: "/api/product/upload-image".Login required
+router.post("/upload-image", fetchuser, async (req, res) => {
+    const { base64 } = req.body;
+    try {
+        const Image = new Images({ image: base64 });
+        const SavedImage = await Image.save()
+        res.json(SavedImage)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+
+//Route to Get image using GET: "/api/product/upload-image".Login required
+router.get("/get-image", fetchuser, async (req, res) => {
+    try {
+        const Image = await Images.find({})
+        res.json(Image)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+//Route3: Search product in buy section using: GET "/api/product/searchproduct". Login required
+
+
 //Route3: Delete a product in buy section using: DELETE "/api/procuts/deleteproduct". Login required
 // (Working)
+
+
 
 module.exports = router;

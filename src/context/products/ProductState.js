@@ -3,7 +3,7 @@ import ProductContext from './ProductContext'
 
 const ProductState = (props) => {
 
-    const host = "http:localhost:7000"
+    const host = "http://localhost:7000"
 
     const ProductsInitial = []
 
@@ -24,21 +24,38 @@ const ProductState = (props) => {
     }
 
     //Add a product 
-    const addProduct = async () => {
+    const addProduct = async (Product_Name, Description, Owner_Name, College, Phone, Email, Instagram, Address, Amount) => {
         //Api call
         const response = await fetch(`${host}/api/product/addproduct`, {
-            method: "POST",
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 "auth-token": localStorage.getItem('token')
             },
+            body: JSON.stringify({ Product_Name, Description, Owner_Name, College, Phone, Email, Instagram, Address, Amount})
         })
         const product = await response.json()
         setProducts(products.concat(product))
     }
 
+    // //Search a product
+    // const searchproduct = async (name) => {
+    //     const response = await fetch(`${host}/api/product/searchproduct/${name}`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             "auth-token": localStorage.getItem('token')
+    //         }
+    //     })
+    //     const json = await response.json()
+    //     let searchproducts = JSON.parse(JSON.stringify(products))
+    //     for(let index =0;products.Product_Name!==name;index++){
+
+    //     }
+    // }
+
     return (
-        <ProductContext.Provider value={{ products, getProducts, addProduct }}>
+        <ProductContext.Provider value={{ products, getProducts, addProduct}}>
             {props.children}
         </ProductContext.Provider>
     )

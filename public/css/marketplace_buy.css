@@ -108,11 +108,6 @@ body {
 }
 
 
-
-
-
-
-
 .bgCover1 {
     background-image: url(../img/bg1.png);
     bottom: 0;
@@ -152,4 +147,13 @@ body {
     width: 100%;
     height: 12rem;
     object-fit: cover;
+}
+
+.fonts-fam{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.hover-custom:hover{
+    background-color: #72B044!important;
+    color: white!important;
 }
