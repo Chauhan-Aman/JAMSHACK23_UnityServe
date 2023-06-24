@@ -49,14 +49,14 @@ const Sell = (props) => {
     const context = useContext(ProductContext);
     const { addProduct } = context
 
-    const [product, setProduct] = useState({ Product_Name: "", Description: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
+    const [product, setProduct] = useState({ Product_Name: "", Description: "", Options: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
 
     const handleClick = (e) => {
         // confirm("Do you want to Continue?")
         e.preventDefault()
-        addProduct(product.Product_Name, product.Description, product.Owner_Name, product.College, product.Phone, product.Email, product.Instagram, product.Address, product.Amount)
+        addProduct(product.Product_Name, product.Description, product.Options, product.Owner_Name, product.College, product.Phone, product.Email, product.Instagram, product.Address, product.Amount)
 
-        setProduct({ Product_Name: "", Description: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
+        setProduct({ Product_Name: "", Description: "", Options: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
         props.showAlert("Added Successfully", "success")
         history.push('/marketplace')
     }
@@ -107,7 +107,21 @@ const Sell = (props) => {
                                     <p className="lead">Upload Image</p>
                                     <input type="file" accept='.png, .jpg, .jpeg' alt="product image" className="inputbox" id="image_upload" onChange={convertToBase64} />
                                     {image === "" || image === null ? "" : <img width={30} height={30} src={image} style={{ margin: "0px 10px" }} alt='' />}
-                                    {/* <button onClick={UploadImage}>Upload</button> */}
+                                </div>
+                                <div className="sell_product_name my-4">
+                                    {/* <p className="lead">Sell / Rent / Request</p>
+                                    <input type="text" name="Product_Name" id="product_name" placeholder="PRODUCT NAME" required className="inputbox" onChange={onchange} value={product.Options} />
+                                    <p>If Request : Amount=Rs. 0.0</p> */}
+                                    <label for="cars">Choose:</label>
+
+                                    <select id="cars" name='Options' className='ms-3 px- py-1' onChange={onchange} value={product.Options}>
+                                        <option value="SELL">Select</option>
+                                        <option value="SELL">SELL</option>
+                                        <option value="REQUEST">REQUEST</option>
+                                        <option value="DONATE">DONATE</option>
+                                        <option value="RENT">RENT</option>
+                                    </select>
+                                    <p className='mt-2'>If Request/Donate : Amount=Rs. 0.0</p>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +154,7 @@ const Sell = (props) => {
                             </div>
                         </div>
                         <div className="submit mt-3">
-                            <input type="text" name="Amount" id="" placeholder="Amount" className="inputbox mx-2 Amount me-2" onChange={onchange} value={product.Amount} required />
+                            <input type="text" name="Amount" id="" placeholder="Amount (Rs.)" className="inputbox mx-2 Amount me-2" onChange={onchange} value={product.Amount} required />
                             <button type="submit" className="btn btn-outline-info text-xs my-1" id="submit_button" onClick={UploadImage}>SELL</button>
                         </div>
 

@@ -168,8 +168,8 @@ body {
     color: #476331;
 }
 #product_description{
-    max-height: 297px;
-    min-height: 297px;
+    max-height: 190px;
+    min-height: 190px;
     width: 400px !important;
 }
 #product_name{

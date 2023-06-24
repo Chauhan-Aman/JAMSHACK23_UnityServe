@@ -15,7 +15,7 @@ const MarketPlace = () => {
             document.title = "UnityServe-MarketPlace";
         }
         else {
-            
+
         }
         // eslint-disable-next-line
     }, [])
@@ -43,8 +43,26 @@ const MarketPlace = () => {
                     <div className="collapse navbar-collapse " id="navbarNavDropdown">
 
                         <ul className="navbar-nav ms-auto mx-2 me-3">
+                            {/* <div class="form-check mx-1 mt-1">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                                <label class="form-check-label text-white fs-6" for="flexRadioDefault1">
+                                    SELL
+                                </label>
+                            </div>
+                            <div class="form-check mx-1 mt-1">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                                <label class="form-check-label text-white fs-6" for="flexRadioDefault2">
+                                    REQUEST
+                                </label>
+                            </div>
+                            <div class="form-check mx-1 me-2 mt-1">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                                <label class="form-check-label text-white fs-6" for="flexRadioDefault2">
+                                    RENT
+                                </label>
+                            </div> */}
                             <li className="nav-item px-2" id="sec_nav-item">
-                                <Link className="nav-link" aria-current="page" to="/marketplace" id="current" >BUY/RENT</Link>
+                                <Link className="nav-link" aria-current="page" to="/marketplace" id="current" >BUY</Link>
                             </li>
                             <li className="nav-item px-1" id="sec_nav-item">
                                 <Link className="nav-link" to="/marketplace/sell">SELL</Link>

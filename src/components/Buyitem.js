@@ -13,7 +13,6 @@ const Buyitem = (props) => {
       pathname: `/product/${product.Product_Name}`,
       state: { product, image },
     });
-
   }
 
   return (
@@ -26,7 +25,8 @@ const Buyitem = (props) => {
             <p className="services_box_text lead ">{product.Description}</p>
             <p className="services_box_text">{product.Owner_Name}</p>
             <p className="services_box_text fs-4">Rs. {product.Amount}</p>
-            <button type="button" className="btn btn-outline-info text-xs" id="buy_button" onClick={handleProduct}>BUY NOW</button>
+            {product.Options === "SELL" ? <button type="button" className="btn btn-outline-info text-xs" id="buy_button" onClick={handleProduct}>Buy Now</button>
+              : <button type="button" className="btn btn-outline-info text-xs" id="buy_button" onClick={handleProduct}>{product.Options}</button>}
           </div>
         </div>
       </div>

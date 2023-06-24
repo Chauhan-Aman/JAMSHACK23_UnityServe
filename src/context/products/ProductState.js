@@ -24,7 +24,7 @@ const ProductState = (props) => {
     }
 
     //Add a product 
-    const addProduct = async (Product_Name, Description, Owner_Name, College, Phone, Email, Instagram, Address, Amount) => {
+    const addProduct = async (Product_Name, Description, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount) => {
         //Api call
         const response = await fetch(`${host}/api/product/addproduct`, {
             method: 'POST',
@@ -32,7 +32,7 @@ const ProductState = (props) => {
                 'Content-Type': 'application/json',
                 "auth-token": localStorage.getItem('token')
             },
-            body: JSON.stringify({ Product_Name, Description, Owner_Name, College, Phone, Email, Instagram, Address, Amount})
+            body: JSON.stringify({ Product_Name, Description, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount })
         })
         const product = await response.json()
         setProducts(products.concat(product))
@@ -55,7 +55,7 @@ const ProductState = (props) => {
     // }
 
     return (
-        <ProductContext.Provider value={{ products, getProducts, addProduct}}>
+        <ProductContext.Provider value={{ products, getProducts, addProduct }}>
             {props.children}
         </ProductContext.Provider>
     )

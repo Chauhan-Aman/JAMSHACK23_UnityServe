@@ -14,6 +14,11 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
+    Options: {
+        type: String,
+        required: true,
+        default:"SELL"
+    },
     Owner_Name: {
         type: String,
         required: true

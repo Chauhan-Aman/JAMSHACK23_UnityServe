@@ -36,14 +36,14 @@ router.post('/addproduct', fetchuser, [
 ], async (req, res) => {
 
     try {
-        const { Product_Name, Description, Owner_Name, College, Phone, Email, Instagram, Address, Amount } = req.body
+        const { Product_Name, Description, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount } = req.body
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
         }
 
         const product = new Product({
-            Product_Name, Description, Owner_Name, College, Phone, Email, Instagram, Address, Amount, user: req.user.id
+            Product_Name, Description, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount, user: req.user.id
         })
         const SavedProduct = await product.save()
         res.json(SavedProduct)

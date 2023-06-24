@@ -18,6 +18,7 @@ const Product = (props) => {
                                 <h4 className="display-7 lh-1 fw-bold py-2 mb-3 fs-1">{product.Product_Name}</h4>
                                 <img src={image.image} alt="" className="product_image-cus" />
                                 <p className="services_box_text lead mt-3 fs-4 ">{product.Description}</p>
+                                <p className="services_box_text lead mt-3 fs-4 fw-bold ">Rs. {product.Amount}</p>
                             </div>
                         </div>
                     </div>
@@ -31,9 +32,9 @@ const Product = (props) => {
                                     <p className="services_box_text lead fs-5">Email : {product.Email}</p>
                                     <p className="services_box_text lead fs-5">Instagram : ( {product.Instagram} )</p>
                                 </div>
-
                             </div>
-                            <div className='mt-5 buy-prod-page'>
+                            <p className="services_box_text lead fs-5 text-white mt-3 text-center">To get in Touch - Contact Socials</p>
+                            <div className='mt-4 buy-prod-page'>
                                 <button type="button" className="btn btn-outline-info text-xs buy-prod-page" id="buy_button" disabled>BUY NOW</button>
                             </div>
                         </div>
