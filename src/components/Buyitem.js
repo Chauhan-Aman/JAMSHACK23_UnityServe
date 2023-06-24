@@ -1,10 +1,20 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 
 const Buyitem = (props) => {
 
   const { product, image } = props
 
-  // {new Date(date).toGMTString()}
+
+  let history = useHistory();
+
+  const handleProduct = () => {
+    history.push({
+      pathname: `/product/${product.Product_Name}`,
+      state: { product, image },
+    });
+
+  }
 
   return (
     <>
@@ -16,7 +26,7 @@ const Buyitem = (props) => {
             <p className="services_box_text lead ">{product.Description}</p>
             <p className="services_box_text">{product.Owner_Name}</p>
             <p className="services_box_text fs-4">Rs. {product.Amount}</p>
-            <button type="button" className="btn btn-outline-info text-xs" id="buy_button">BUY NOW</button>
+            <button type="button" className="btn btn-outline-info text-xs" id="buy_button" onClick={handleProduct}>BUY NOW</button>
           </div>
         </div>
       </div>

@@ -8,13 +8,14 @@ import MarketPlace from './components/MarketPlace';
 import Sell from './components/Sell';
 import { useState } from 'react';
 import ProductState from './context/products/ProductState';
+import ImageUpload from './components/ImageUpload';
+import ProductPage from './components/ProductPage';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import ImageUpload from './components/ImageUpload';
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
           <Switch>
             <Route exact path="/">< Home /></Route>
             <Route exact path="/marketplace">< MarketPlace /></Route>
+            <Route path="/product/:productName" ><ProductPage /></Route>
             <Route exact path="/marketplace/sell">< Sell showAlert={showAlert} /></Route>
             <Route exact path="/login">< Login showAlert={showAlert} /></Route>
             <Route exact path="/signup">< Signup showAlert={showAlert} /></Route>

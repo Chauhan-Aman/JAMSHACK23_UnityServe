@@ -23,7 +23,7 @@ const MarketPlace = () => {
     const [allimage, SetAllimage] = useState([])
 
     const getImage = async () => {
-        const response = await fetch("http://localhost:7000/api/product/get-image", {
+        const response = await fetch("http://localhost:8080/api/product/get-image", {
             method: "GET",
             crossDomain: true,
             headers: {
