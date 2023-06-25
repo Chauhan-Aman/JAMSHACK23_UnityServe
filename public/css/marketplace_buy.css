@@ -126,6 +126,7 @@ body {
     border: 2px solid #72B044;
     border-radius: 20px;
     color: white;
+    height: 81vh!important;
 
 }
 
@@ -134,7 +135,7 @@ body {
     color: #72B044 !important;
     border: 2px solid #72B044 !important;
     background-color: #111111 !important;
-
+    margin-bottom: 10px!important;
 }
 
 #buy_button:hover {
@@ -145,7 +146,7 @@ body {
 
 .product_image {
     width: 100%;
-    height: 12rem;
+    min-height: 12rem;
     object-fit: cover;
 }
 
@@ -161,4 +162,8 @@ body {
 .buy-custom-css{
     height: 750px!important;
     width: 1000px!important;
+}
+
+.height-cus{
+    min-height: 190px!important;
 }

@@ -114,8 +114,8 @@ const Sell = (props) => {
                                     <p>If Request : Amount=Rs. 0.0</p> */}
                                     <label for="cars">Choose:</label>
 
-                                    <select id="cars" name='Options' className='ms-3 px- py-1' onChange={onchange} value={product.Options}>
-                                        <option value="SELL">Select</option>
+                                    <select id="cars" name='Options' className='ms-3 px-1 py-1' onChange={onchange} value={product.Options}>
+                                        <option value="">Select</option>
                                         <option value="SELL">SELL</option>
                                         <option value="REQUEST">REQUEST</option>
                                         <option value="DONATE">DONATE</option>
