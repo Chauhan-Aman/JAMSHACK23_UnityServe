@@ -36,14 +36,14 @@ router.post('/addproduct', fetchuser, [
 ], async (req, res) => {
 
     try {
-        const { Product_Name, Description, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount } = req.body
+        const { Product_Name, Description, base64, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount } = req.body
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
         }
 
         const product = new Product({
-            Product_Name, Description, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount, user: req.user.id
+            Product_Name, Description, image: base64, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount, user: req.user.id
         })
         const SavedProduct = await product.save()
         res.json(SavedProduct)
@@ -80,6 +80,16 @@ router.get("/get-image", fetchuser, async (req, res) => {
 })
 
 //Route3: Search product in buy section using: GET "/api/product/searchproduct". Login required
+router.get("/search", fetchuser, async (req, res) => {
+    try {
+        const { product } = req.query
+        const products = await Product.find({ Product_Name: { $regex: product, $options: 'i' } }) // regex- for case-sensitive
+        res.json(products)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send("Internal Server Error")
+    }
+})
 
 
 //Route3: Delete a product in buy section using: DELETE "/api/procuts/deleteproduct". Login required

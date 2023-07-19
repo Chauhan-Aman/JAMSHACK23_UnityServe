@@ -24,7 +24,7 @@ const ProductState = (props) => {
     }
 
     //Add a product 
-    const addProduct = async (Product_Name, Description, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount) => {
+    const addProduct = async (Product_Name, Description, image, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount) => {
         //Api call
         const response = await fetch(`${host}/api/product/addproduct`, {
             method: 'POST',
@@ -32,30 +32,27 @@ const ProductState = (props) => {
                 'Content-Type': 'application/json',
                 "auth-token": localStorage.getItem('token')
             },
-            body: JSON.stringify({ Product_Name, Description, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount })
+            body: JSON.stringify({ Product_Name, Description, base64: image, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount })
         })
         const product = await response.json()
         setProducts(products.concat(product))
     }
 
-    // //Search a product
-    // const searchproduct = async (name) => {
-    //     const response = await fetch(`${host}/api/product/searchproduct/${name}`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             "auth-token": localStorage.getItem('token')
-    //         }
-    //     })
-    //     const json = await response.json()
-    //     let searchproducts = JSON.parse(JSON.stringify(products))
-    //     for(let index =0;products.Product_Name!==name;index++){
-
-    //     }
-    // }
+    //Search a product
+    const searchproduct = async (Product_Name) => {
+        const response = await fetch(`${host}/api/product/search?product=${encodeURIComponent(Product_Name)}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "auth-token": localStorage.getItem('token')
+            },
+        })
+        const product = await response.json()
+        setProducts(product)
+    }
 
     return (
-        <ProductContext.Provider value={{ products, getProducts, addProduct }}>
+        <ProductContext.Provider value={{ products, getProducts, addProduct, searchproduct }}>
             {props.children}
         </ProductContext.Provider>
     )
