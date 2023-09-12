@@ -107,13 +107,13 @@ const Home = () => {
                     <p className="lead"></p>
                     <a href="/"><button type="button" className="btn btn-outline-info  start_button py-2" id="member_button">PORTFOLIO</button></a>
                 </div>
-                <div className="member py-5">
-                    <img src="./img/member3.png" alt="" className="member_img" />
-                    <h1 className="display-7">Anmol Sharma</h1>
-                    <h1 className="display-6 member_post">Ui-Ux Designer</h1>
-                    <p className="lead"></p>
-                    <a href="/"><button type="button" className="btn btn-outline-info  start_button py-2" id="member_button">PORTFOLIO</button></a>
-                </div>
+                // <div className="member py-5">
+                //     <img src="./img/member3.png" alt="" className="member_img" />
+                //     <h1 className="display-7">Anmol Sharma</h1>
+                //     <h1 className="display-6 member_post">Ui-Ux Designer</h1>
+                //     <p className="lead"></p>
+                //     <a href="/"><button type="button" className="btn btn-outline-info  start_button py-2" id="member_button">PORTFOLIO</button></a>
+                // </div>
             </div>
 
         </>
