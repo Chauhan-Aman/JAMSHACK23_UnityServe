@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import ProductContext from '../context/products/ProductContext'
 import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 const Sell = (props) => {
 
@@ -27,25 +27,6 @@ const Sell = (props) => {
 
     let history = useHistory()
 
-
-    // const UploadImage = async () => {
-    //     const response = await fetch("http://localhost:8000/api/product/upload-image", {
-    //         method: "POST",
-    //         crossDomain: true,
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Accept: "application/json",
-    //             "Access-Control-Allow-Origin": "*",
-    //             "auth-token": localStorage.getItem('token')
-    //         },
-    //         body: JSON.stringify({
-    //             base64: image
-    //         })
-    //     })
-    //     const json = await response.json()
-    //     console.log(json)
-    // }
-
     const context = useContext(ProductContext);
     const { addProduct } = context
 
@@ -54,7 +35,7 @@ const Sell = (props) => {
     const handleClick = (e) => {
         // confirm("Do you want to Continue?")
         e.preventDefault()
-        addProduct(product.Product_Name, product.Description,image, product.Options, product.Owner_Name, product.College, product.Phone, product.Email, product.Instagram, product.Address, product.Amount)
+        addProduct(product.Product_Name, product.Description, image, product.Options, product.Owner_Name, product.College, product.Phone, product.Email, product.Instagram, product.Address, product.Amount)
 
         setProduct({ Product_Name: "", Description: "", Options: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
         props.showAlert("Added Successfully", "success")
@@ -77,7 +58,7 @@ const Sell = (props) => {
 
                         <ul className="navbar-nav ms-auto mx-2 me-3">
                             <li className="nav-item px-2" id="sec_nav-item">
-                                <Link className="nav-link" aria-current="page" to="/marketplace">BUY/RENT</Link>
+                                <Link className="nav-link" aria-current="page" to="/marketplace">BUY/RENT...</Link>
                             </li>
                             <li className="nav-item px-1" id="sec_nav-item">
                                 <Link className="nav-link" to="/marketplace/sell" id="current">SELL</Link>
@@ -92,7 +73,7 @@ const Sell = (props) => {
                     <p className="lead">Generate a post to sell a product/service</p>
                 </div>
                 <div className="sell_form">
-                    <form onSubmit={handleClick} encType='multipart/form-data'>  {/* encType - for uploading*/}
+                    <form onSubmit={handleClick} encType='multipart/form-data'>
                         <div className="product_section mx-2">
                             <div className="col">
                                 <div className="sell_product_name my-4">
@@ -109,9 +90,6 @@ const Sell = (props) => {
                                     {image === "" || image === null ? "" : <img width={30} height={30} src={image} style={{ margin: "0px 10px" }} alt='' />}
                                 </div>
                                 <div className="sell_product_name my-4">
-                                    {/* <p className="lead">Sell / Rent / Request</p>
-                                    <input type="text" name="Product_Name" id="product_name" placeholder="PRODUCT NAME" required className="inputbox" onChange={onchange} value={product.Options} />
-                                    <p>If Request : Amount=Rs. 0.0</p> */}
                                     <label htmlFor="cars">Choose:</label>
 
                                     <select id="cars" name='Options' className='ms-3 px-1 py-1' onChange={onchange} value={product.Options}>

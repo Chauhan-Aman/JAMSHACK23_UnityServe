@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Product = require('../models/Product')
-const Images = require('../models/Image')
 const fetchuser = require('../middleware/fetchuser')
 const { body, validationResult } = require('express-validator')
 
@@ -48,31 +47,6 @@ router.post('/addproduct', fetchuser, [
         const SavedProduct = await product.save()
         res.json(SavedProduct)
 
-    } catch (error) {
-        console.error(error.message)
-        res.status(500).send("Internal Server Error")
-    }
-})
-
-//Route to upload image using POST: "/api/product/upload-image".Login required
-router.post("/upload-image", fetchuser, async (req, res) => {
-    const { base64 } = req.body;
-    try {
-        const Image = new Images({ image: base64 });
-        const SavedImage = await Image.save()
-        res.json(SavedImage)
-    } catch (error) {
-        console.error(error.message)
-        res.status(500).send("Internal Server Error")
-    }
-})
-
-
-//Route to Get image using GET: "/api/product/upload-image".Login required
-router.get("/get-image", fetchuser, async (req, res) => {
-    try {
-        const Image = await Images.find({})
-        res.json(Image)
     } catch (error) {
         console.error(error.message)
         res.status(500).send("Internal Server Error")

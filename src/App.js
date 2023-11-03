@@ -7,7 +7,6 @@ import Signup from './components/Signup';
 import Alert from './components/Alert';
 import MarketPlace from './components/MarketPlace';
 import Sell from './components/Sell';
-import ImageUpload from './components/ImageUpload';
 import ProductPage from './components/ProductPage';
 
 import {
@@ -47,7 +46,6 @@ function App() {
           <Route exact path="/marketplace/sell">< Sell showAlert={showAlert} /></Route>
           <Route exact path="/login">< Login showAlert={showAlert} /></Route>
           <Route exact path="/signup">< Signup showAlert={showAlert} /></Route>
-          <Route exact path="/upload">< ImageUpload /></Route>
         </Switch>
       </Router>
 

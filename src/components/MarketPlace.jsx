@@ -13,7 +13,6 @@ const MarketPlace = () => {
     useEffect(() => {
         if (localStorage.getItem('token')) {
             getProducts()
-            // getImage()
             document.title = "UnityServe-MarketPlace";
         }
         else {
@@ -21,21 +20,6 @@ const MarketPlace = () => {
         }
         // eslint-disable-next-line
     }, [])
-
-    // const [allimage, SetAllimage] = useState([])
-
-    // const getImage = async () => {
-    //     const response = await fetch("http://localhost:8000/api/product/get-image", {
-    //         method: "GET",
-    //         crossDomain: true,
-    //         headers: {
-    //             "auth-token": localStorage.getItem('token')
-    //         },
-    //     })
-    //     const json = await response.json()
-    //     SetAllimage(json)
-    // }
-
 
     const [search, setSearch] = useState("")
 
@@ -86,17 +70,14 @@ const MarketPlace = () => {
                         <>
                             <div className='d-flex justify-content-between'>
                                 <h1 className='text-white text-center mb-3 fonts-fam me-1 ms-3'>Available Products</h1>
-                                <input className="form-control me-2" name='search' type="search" placeholder="Search" aria-label="Search" onChange={OnChange} value={search} style={{ width: "250px", height: "45px" }} />
+                                <input className="form-control me-2" name='search' type="search" placeholder="Search For Products." aria-label="Search" onChange={OnChange} value={search} style={{ width: "250px", height: "45px" }} />
                             </div>
                         </>
                         :
                         <>
                             <div className='d-flex justify-content-between'>
                                 <h1 className='text-white text-center mb-3 fonts-fam me-1 ms-3'>Available Products</h1>
-                                {/* <form className="d-flex ms-4 " style={{ width: "320px", height: "45px" }} role="search" onSubmit={handleSearch}> */}
-                                <input className="form-control me-2" name='search' type="search" placeholder="Search" aria-label="Search" onChange={OnChange} value={search} style={{ width: "250px", height: "45px" }} />
-                                {/* <button className="btn btn-outline-success hover-custom" type="submit" style={{ border: "1px solid #72b044", color: "#72b044" }}>Search</button> */}
-                                {/* </form> */}
+                                <input className="form-control me-2" name='search' type="search" placeholder="Search For Products." aria-label="Search" onChange={OnChange} value={search} style={{ width: "250px", height: "42px" }} />
                             </div>
                         </>
                     }
