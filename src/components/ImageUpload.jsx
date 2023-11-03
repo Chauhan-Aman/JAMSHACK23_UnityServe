@@ -25,7 +25,7 @@ const ImageUpload = () => {
 
 
     const UploadImage = async () => {
-        const response = await fetch("http://localhost:7000/api/product/upload-image", {
+        const response = await fetch("http://localhost:8000/api/product/upload-image", {
             method: "POST",
             crossDomain: true,
             headers: {
@@ -43,7 +43,7 @@ const ImageUpload = () => {
     }
 
     const getImage = async () => {
-        const response = await fetch("http://localhost:7000/api/product/get-image", {
+        const response = await fetch("http://localhost:8000/api/product/get-image", {
             method: "GET",
             crossDomain: true,
             headers: {

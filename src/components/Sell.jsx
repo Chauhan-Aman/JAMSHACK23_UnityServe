@@ -29,7 +29,7 @@ const Sell = (props) => {
 
 
     // const UploadImage = async () => {
-    //     const response = await fetch("http://localhost:7000/api/product/upload-image", {
+    //     const response = await fetch("http://localhost:8000/api/product/upload-image", {
     //         method: "POST",
     //         crossDomain: true,
     //         headers: {

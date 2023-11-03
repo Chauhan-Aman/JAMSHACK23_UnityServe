@@ -3,7 +3,7 @@ import ProductContext from './ProductContext'
 
 const ProductState = (props) => {
 
-    const host = "http://localhost:7000"
+    const host = "http://localhost:8000"
 
     const ProductsInitial = []
 
