@@ -1,17 +1,28 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom'
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom'
 
 const Navbar = (props) => {
 
     let location = useLocation();
     let history = useHistory();
+    console.log(location)
 
     const handleLogout = () => {
         localStorage.removeItem('token')
         history.push('/login')
         props.showAlert("Logged out Successfully", "success")
     }
+
+    const [showButtons, setShowButtons] = useState(true)
+
+    useEffect(() => {
+        if (location.pathname === '/marketplace') {
+            setShowButtons(false);
+        } else {
+            setShowButtons(true);
+        }
+    }, [location.pathname]);
 
     return (
         <>
@@ -31,12 +42,17 @@ const Navbar = (props) => {
                             <li className="nav-item px-2">
                                 <Link className="nav-link" aria-current="page" to="/" id={`${location.pathname === "/" ? "current" : ""}`}>HOME</Link>
                             </li>
-                            <li className="nav-item px-2">
-                                <a className="nav-link" href="#vision">VISION</a>
-                            </li>
-                            <li className="nav-item px-2">
-                                <a className="nav-link" href="#team">THE TEAM</a>
-                            </li>
+                            {
+                                showButtons &&
+                                <>
+                                    <li className="nav-item px-2">
+                                        <a className="nav-link" href="#vision">VISION</a>
+                                    </li>
+                                    <li className="nav-item px-2">
+                                        <a className="nav-link" href="#team">THE TEAM</a>
+                                    </li>
+                                </>
+                            }
                             <li className="nav-item px-2">
                                 {!localStorage.getItem('token') ? <Link className="nav-link" to="/login" id={`${location.pathname === "/login" ? "current" : ""}`} style={{ Cursor: "not-allowed" }}>MARKETPLACE</Link> :
                                     <Link className="nav-link" to="/marketplace" id={`${location.pathname === "/marketplace" ? "current" : ""}`} style={{ Cursor: "pointer" }}>MARKETPLACE</Link>}

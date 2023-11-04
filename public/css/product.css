@@ -22,8 +22,6 @@ body {
 }
 
 
-
-
 .navbar {
     --bs-navbar-padding-y: 0.5rem !important;
 }
@@ -151,4 +149,12 @@ body {
     margin: 0px auto!important;
     font-size: 1.2rem!important;
     height: 60px;
+}
+
+.amount-btn{
+    background-color: #72B044;
+    padding: 0.5rem 0.8rem;
+    border: 2px solid #456929;
+    border-radius: 8px;
+    cursor: default!important;
 }

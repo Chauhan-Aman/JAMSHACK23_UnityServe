@@ -3,9 +3,7 @@ const dotenv = require('dotenv');
 
 dotenv.config()
 
-// const mongouri = "mongodb://127.0.0.1:27017/unityserve";
 const MONGO_URI = process.env.REACT_APP_MONGO_URL;
-console.log(MONGO_URI)
 
 const connectToMongo = async () => {
     try {
