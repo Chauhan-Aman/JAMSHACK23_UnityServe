@@ -50,6 +50,50 @@ const ProductState = (props) => {
         setProducts(products.concat(product))
     }
 
+    //Delete a product
+    const deleteProduct = async (id) => {
+        //Api call
+        const response = await fetch(`${host}/api/product/deleteproduct/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
+        })
+        const json = await response.json()
+        console.log(json);
+
+        const NewProducts = products.filter((product) => { return product._id !== id })
+        setProducts(NewProducts);
+    }
+
+    //Update Product
+    const updateProduct = async (id, Options, Amount) => {
+        //Api call
+        const response = await fetch(`${host}/api/product/updateproduct/:${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({ Options, Amount })
+        })
+        const json = await response.json()
+        console.log(json)
+
+        const NewProducts = JSON.parse(JSON.stringify(products));
+
+        for (let index = 0; index < NewProducts.length; index++) {
+            const element = NewProducts[index]
+            if (element._id === id) {
+                NewProducts[index].Options = Options;
+                NewProducts[index].Amount = Amount;
+                break;
+            }
+        }
+        setProducts(NewProducts);
+    }
+
     //Search a product
     const searchproduct = async (Product_Name) => {
         const response = await fetch(`${host}/api/product/search?product=${encodeURIComponent(Product_Name)}`, {
@@ -65,7 +109,17 @@ const ProductState = (props) => {
 
     return (
 
-        <ProductContext.Provider value={{ products, getProducts, getUserProducts, addProduct, searchproduct }}>
+        <ProductContext.Provider value={
+            {
+                products,
+                getProducts,
+                getUserProducts,
+                addProduct,
+                deleteProduct,
+                updateProduct,
+                searchproduct
+            }
+        }>
             {props.children}
         </ProductContext.Provider>
     )

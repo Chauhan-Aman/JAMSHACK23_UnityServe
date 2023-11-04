@@ -47,7 +47,7 @@ function App() {
           <Route exact path="/marketplace/donate">< MarketPlace /></Route>
           <Route exact path="/marketplace/sell">< Sell showAlert={showAlert} /></Route>
           <Route path="/product/:productName" ><ProductPage /></Route>
-          <Route exact path="/myproducts" ><MyProducts /></Route>
+          <Route exact path="/myproducts" ><MyProducts showAlert={showAlert}/></Route>
         </Switch>
       </Router>
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import ProductContext from '../context/products/ProductContext';
-import Buyitem from './Buyitem';
+import MyProductItem from './MyProductItem';
 import { useHistory } from 'react-router-dom';
 
 const MyProducts = () => {
@@ -26,7 +26,7 @@ const MyProducts = () => {
             {
                 products.length !== 0
                     ? products.map(product => (
-                        <Buyitem key={product._id} product={product} />
+                        <MyProductItem key={product._id} product={product} />
                     ))
                     : <div className='No-available-my-products'>
                         <h1 className='text-white text-center mb-3 fonts-fam me-1 ms-3'>You've Not Added any Products in MarketPlace Yet...</h1>

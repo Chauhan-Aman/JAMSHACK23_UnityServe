@@ -130,6 +130,13 @@ body {
 
 }
 
+#innercard2{
+    background-color: #1c1c1c;
+    border: 2px solid #72B044;
+    border-radius: 20px;
+    color: white;
+    height: 85vh!important;
+}
 
 #buy_button {
     color: #72B044 !important;

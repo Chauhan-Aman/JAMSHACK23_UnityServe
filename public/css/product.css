@@ -199,3 +199,9 @@ body {
     align-items: center;
     margin: auto;
 }
+
+.sideAlert{
+    position: fixed!important;
+    top: 20px!important;
+    right: 20px!important;
+}

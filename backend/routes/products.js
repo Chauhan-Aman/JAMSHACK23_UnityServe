@@ -18,7 +18,7 @@ router.get('/fetchuserproducts', fetchuser, async (req, res) => {
 // No user specific
 router.get('/fetchallproducts', async (req, res) => {
     try {
-        const products = await Product.find({}) 
+        const products = await Product.find({})
         res.json(products)
     } catch (error) {
         console.error(error.message)
@@ -65,9 +65,49 @@ router.get("/search", fetchuser, async (req, res) => {
     }
 })
 
+//Route4: update a product in myproducts section using PUT "/api/product/updateproduct". Login required
+router.put('/updateproduct/:id', fetchuser, async (req, res) => {
 
-//Route3: Delete a product in buy section using: DELETE "/api/procuts/deleteproduct". Login required
-// (Working)
+    const { Options, Amount } = req.body;
+
+    try {
+        const newProduct = {};
+        if (Options) { newProduct.Options = Options }
+        if (Amount) { newProduct.Amount = Amount }
+
+        let product = await Product.findById(req.params.id)
+        if (!product) { return res.json(404).send("Not Found") }
+
+        if (product.user.toString() !== req.user.id) {
+            return res.status(401).send("Not Allowed-This is Not Your Product");
+        }
+
+        product = await Product.findByIdAndUpdate(req.params.id, { $set: newProduct }, { new: true })
+        res.json({ product });
+
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+//Route5: Delete a product in myproducts section using: DELETE "/api/product/deleteproduct". Login required
+router.delete("/deleteproduct/:id", fetchuser, async (req, res) => {
+    try {
+        let product = await Product.findById(req.params.id)
+        if (!product) { return res.status(404).send("Not Found") }
+
+        if (product.user.toString() !== req.user.id) {
+            return res.status(401).send("Not Allowed-This is Not Your Product");
+        }
+
+        product = await Product.findByIdAndDelete(req.params.id)
+        res.json({ "Success": "Product has been deleted", product: product })
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send("Internal Server Error")
+    }
+})
 
 
 

@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 
 const Buyitem = (props) => {
 
-  const { product} = props
-
+  const { product } = props
 
   let history = useHistory();
 
@@ -24,7 +23,6 @@ const Buyitem = (props) => {
             <img src={product.image} alt="" className="product_image" />
             <p className="services_box_text lead height-cus ">{product.Description}</p>
             <p className="services_box_text mt-3">Seller: {product.Owner_Name}</p>
-            {/* {(product.Options === "DONATE" || product.Options === "REQUEST") ? "" : <p className="services_box_text fs-4">Rs. {product.Amount}</p>} */}
             <p className="services_box_text fs-4">Rs. {product.Amount}</p>
             {product.Options === "SELL" ? <button type="button" className="btn btn-outline-info text-xs " id="buy_button" onClick={handleProduct}>Buy Now</button>
               : <button type="button" className="btn btn-outline-info text-xs " id="buy_button" onClick={handleProduct}>{product.Options}</button>}
