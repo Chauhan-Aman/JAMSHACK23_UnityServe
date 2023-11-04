@@ -2,22 +2,27 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ProductContext from '../context/products/ProductContext'
 import Buyitem from './Buyitem'
+import Spinner from './Spinner'
 
 const MarketPlace = () => {
 
     const context = useContext(ProductContext)
     const { products, getProducts, searchproduct } = context
 
+    const [loading, setLoading] = useState(false)
+
     const location = useLocation();
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            getProducts()
-            document.title = "UnityServe-MarketPlace";
+        const FetchProducts = async () => {
+            if (localStorage.getItem('token')) {
+                setLoading(true)
+                await getProducts()
+                setLoading(false)
+                document.title = "UnityServe-MarketPlace";
+            }
         }
-        else {
-
-        }
+        FetchProducts()
         // eslint-disable-next-line
     }, [])
 
@@ -70,6 +75,7 @@ const MarketPlace = () => {
                         <>
                             <div className='No-available-products'>
                                 <h1 className='text-white text-center mb-3 fonts-fam me-1 ms-3'>No Available Products...</h1>
+                                {loading && <Spinner />}
                             </div>
                         </>
                         :

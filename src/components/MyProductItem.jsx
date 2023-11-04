@@ -5,10 +5,10 @@ import Alert from './Alert'
 
 const MyProductItem = (props) => {
 
-    const { product } = props
+    const { product } = props;
 
     const context = useContext(ProductContext)
-    const { deleteProduct, updateProduct } = context
+    const { deleteProduct } = context
 
     const [alert, setalert] = useState(null);
 
@@ -28,10 +28,6 @@ const MyProductItem = (props) => {
             deleteProduct(product._id)
             showAlert("Deleted SuccessFully", "success")
         }
-    }
-
-    const handleUpdate = () => {
-        updateProduct(product._id)
     }
 
     return (
