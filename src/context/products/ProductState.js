@@ -23,15 +23,18 @@ const ProductState = (props) => {
         setProducts(json)
     }
 
+    //Get user products
     const getUserProducts = async () => {
+        // Api call
         const response = await fetch(`${host}/api/product/fetchuserproducts`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
                 "auth-token": localStorage.getItem('token')
-            }
+            },
         })
         const json = await response.json()
+        // console.log(json)
         setProducts(json)
     }
 

@@ -34,7 +34,8 @@ const MarketPlace = () => {
         } else {
             setSearch([]);
         }
-    }, [search, searchproduct])
+        //eslint-disable-next-line
+    }, [searchproduct])
 
 
     const OnChange = (e) => {
@@ -69,32 +70,36 @@ const MarketPlace = () => {
                     </div>
                 </div>
             </nav>
-            <div className="container d-flex flex-wrap">
-                <div className="container ">
+            <div className="container d-flex flex-wrap ">
+                <div className="d-inline-flex container justify-content-between ">
                     {products.length === 0 ?
                         <>
-                            <div className='No-available-products'>
-                                <h1 className='text-white text-center mb-3 fonts-fam me-1 ms-3'>No Available Products...</h1>
-                                {loading && <Spinner />}
+                            <div className='No-available-products text-center'>
+                                <div className='d-flex justify-content-center'>
+                                    <h1 className='text-white mb-3 fonts-fam me-1 ms-3'>No Available Products...</h1>
+                                    {<Spinner />}
+                                </div>
                             </div>
                         </>
                         :
                         <>
                             <div className='d-flex justify-content-between'>
                                 <h1 className='text-white text-center mb-3 fonts-fam me-1 ms-3'>Available Products</h1>
-                                <input
-                                    className="form-control me-2"
-                                    name='search'
-                                    type="search"
-                                    placeholder="Search For Products."
-                                    aria-label="Search"
-                                    onChange={OnChange}
-                                    value={search}
-                                    style={{ width: "250px", height: "42px" }}
-                                />
                             </div>
                         </>
                     }
+                    <div className='d-flex justify-content-end'>
+                        <input
+                            className="form-control me-2"
+                            name='search'
+                            type="search"
+                            placeholder="Search For Products."
+                            aria-label="Search"
+                            onChange={OnChange}
+                            value={search}
+                            style={{ width: "250px", height: "42px" }}
+                        />
+                    </div>
                 </div>
                 {products.map((product) => {
                     if (product.Options === "SELL" && location.pathname === '/marketplace') {

@@ -179,8 +179,10 @@ body {
 }
 
 .No-available-products{
-    height: 50vh;
+    height: 60vh;
+    width: 50vw;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: auto;
+    justify-content: end!important;
+    align-items: center!important;
 }

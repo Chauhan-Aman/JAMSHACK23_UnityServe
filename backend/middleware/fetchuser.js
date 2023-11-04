@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = "WebSavvy";
+const JWT_SECRET = `${process.env.REACT_APP_JWT_SECRET}`;
 
 const fetchuser = (req, res, next) => {
     const token = req.header('auth-token')
