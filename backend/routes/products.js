@@ -4,21 +4,21 @@ const Product = require('../models/Product')
 const fetchuser = require('../middleware/fetchuser')
 const { body, validationResult } = require('express-validator')
 
-// Route1: Get all Selling items using: GET "/api/product/fetchallproducts" . Login required
-// router.get('/fetchallproducts', fetchuser, async (req, res) => {
-//     try {
-//         const products = await Product.find({ user: req.user.id })
-//         res.json(products)
-//     } catch (error) {
-//         console.error(error.message)
-//         res.status(500).send("Internal Server Error")
-//     }
-// })
+// Route1: Get all Selling items using: GET "/api/product/fetchallproducts" . Login required(UserSpecific)
+router.get('/fetchuserproducts', fetchuser, async (req, res) => {
+    try {
+        const products = await Product.find({ user: req.user.id })
+        res.json(products)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send("Internal Server Error")
+    }
+})
 
 // No user specific
 router.get('/fetchallproducts', async (req, res) => {
     try {
-        const products = await Product.find({})
+        const products = await Product.find({}) 
         res.json(products)
     } catch (error) {
         console.error(error.message)

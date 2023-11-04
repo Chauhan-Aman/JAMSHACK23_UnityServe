@@ -23,6 +23,18 @@ const ProductState = (props) => {
         setProducts(json)
     }
 
+    const getUserProducts = async () => {
+        const response = await fetch(`${host}/api/product/fetchuserproducts`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                "auth-token": localStorage.getItem('token')
+            }
+        })
+        const json = await response.json()
+        setProducts(json)
+    }
+
     //Add a product 
     const addProduct = async (Product_Name, Description, image, Options, Owner_Name, College, Phone, Email, Instagram, Address, Amount) => {
         //Api call
@@ -52,7 +64,8 @@ const ProductState = (props) => {
     }
 
     return (
-        <ProductContext.Provider value={{ products, getProducts, addProduct, searchproduct }}>
+
+        <ProductContext.Provider value={{ products, getProducts, getUserProducts, addProduct, searchproduct }}>
             {props.children}
         </ProductContext.Provider>
     )

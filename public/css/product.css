@@ -189,3 +189,13 @@ body {
     border-radius: 8px;
     cursor: default!important;
 }
+
+.No-available-my-products{
+    height: 70vh;
+    width: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}

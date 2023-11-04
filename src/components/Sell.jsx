@@ -108,7 +108,7 @@ const Sell = (props) => {
                     <h1>Sell on UnityServe</h1>
                     <p className="lead">Generate a post to sell a product/service</p>
                 </div>
-                <div className="sell_form">
+                <div className="sell_form mb-3">
                     <form onSubmit={handleClick} encType='multipart/form-data'>
                         <div className="product_section mx-2">
                             <div className="col">
@@ -263,7 +263,6 @@ const Sell = (props) => {
                             />
                             <button type="submit" className="btn btn-outline-info text-xs my-1" id="submit_button">SELL</button>
                         </div>
-
 
                     </form>
                 </div>

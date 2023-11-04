@@ -6,7 +6,6 @@ const Navbar = (props) => {
 
     let location = useLocation();
     let history = useHistory();
-    console.log(location)
 
     const handleLogout = () => {
         localStorage.removeItem('token')
@@ -18,12 +17,13 @@ const Navbar = (props) => {
 
     useEffect(() => {
         if (location.pathname === '/marketplace'
-            || '/marketplace/sell'
-            || '/marketplace/rent'
-            || '/marketplace/donate'
-            || '/marketplace/request'
-            || '/login'
-            || 'signup'
+            || location.pathname === '/marketplace/sell'
+            || location.pathname === '/marketplace/rent'
+            || location.pathname === '/marketplace/donate'
+            || location.pathname === '/marketplace/request'
+            || location.pathname === '/myproducts'
+            || location.pathname === '/login'
+            || location.pathname === 'signup'
         ) {
             setShowButtons(false);
         } else {
