@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link ,useLocation} from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ProductContext from '../context/products/ProductContext'
 import Buyitem from './Buyitem'
 
@@ -46,16 +46,16 @@ const MarketPlace = () => {
 
                         <ul className="navbar-nav ms-auto mx-2 me-3">
                             <li className="nav-item px-2" id="sec_nav-item">
-                                <Link className="nav-link" aria-current="page" to="/marketplace/donate" id={location.pathname==='/marketplace/donate'?'current':''} >DONATIONS</Link>
+                                <Link className="nav-link" aria-current="page" to="/marketplace/donate" id={location.pathname === '/marketplace/donate' ? 'current' : ''} >DONATIONS</Link>
                             </li>
                             <li className="nav-item px-2" id="sec_nav-item">
-                                <Link className="nav-link" aria-current="page" to="/marketplace/request" id={location.pathname==='/marketplace/request'?'current':''} >REQUESTS</Link>
+                                <Link className="nav-link" aria-current="page" to="/marketplace/request" id={location.pathname === '/marketplace/request' ? 'current' : ''} >REQUESTS</Link>
                             </li>
                             <li className="nav-item px-2" id="sec_nav-item">
-                                <Link className="nav-link" aria-current="page" to="/marketplace/rent" id={location.pathname==='/marketplace/rent'?'current':''} >RENT</Link>
+                                <Link className="nav-link" aria-current="page" to="/marketplace/rent" id={location.pathname === '/marketplace/rent' ? 'current' : ''} >RENT</Link>
                             </li>
                             <li className="nav-item px-2" id="sec_nav-item">
-                                <Link className="nav-link" aria-current="page" to="/marketplace" id={location.pathname==='/marketplace'?'current':''} >BUY</Link>
+                                <Link className="nav-link" aria-current="page" to="/marketplace" id={location.pathname === '/marketplace' ? 'current' : ''} >BUY</Link>
                             </li>
                             <li className="nav-item px-1" id="sec_nav-item">
                                 <Link className="nav-link" to="/marketplace/sell">SELL</Link>
@@ -68,31 +68,39 @@ const MarketPlace = () => {
                 <div className="container ">
                     {products.length === 0 ?
                         <>
-                            <div className='d-flex justify-content-between'>
-                                <h1 className='text-white text-center mb-3 fonts-fam me-1 ms-3'>Available Products</h1>
-                                <input className="form-control me-2" name='search' type="search" placeholder="Search For Products." aria-label="Search" onChange={OnChange} value={search} style={{ width: "250px", height: "45px" }} />
+                            <div className='No-available-products'>
+                                <h1 className='text-white text-center mb-3 fonts-fam me-1 ms-3'>No Available Products...</h1>
                             </div>
                         </>
                         :
                         <>
                             <div className='d-flex justify-content-between'>
                                 <h1 className='text-white text-center mb-3 fonts-fam me-1 ms-3'>Available Products</h1>
-                                <input className="form-control me-2" name='search' type="search" placeholder="Search For Products." aria-label="Search" onChange={OnChange} value={search} style={{ width: "250px", height: "42px" }} />
+                                <input
+                                    className="form-control me-2"
+                                    name='search'
+                                    type="search"
+                                    placeholder="Search For Products."
+                                    aria-label="Search"
+                                    onChange={OnChange}
+                                    value={search}
+                                    style={{ width: "250px", height: "42px" }}
+                                />
                             </div>
                         </>
                     }
                 </div>
                 {products.map((product) => {
-                    if (product.Options === "SELL" && location.pathname==='/marketplace') {
+                    if (product.Options === "SELL" && location.pathname === '/marketplace') {
                         return <Buyitem key={product._id} product={product} />;
                     }
-                    else if (product.Options === "DONATE" && location.pathname==='/marketplace/donate') {
+                    else if (product.Options === "DONATE" && location.pathname === '/marketplace/donate') {
                         return <Buyitem key={product._id} product={product} />;
                     }
-                    else if (product.Options === "REQUEST" && location.pathname==='/marketplace/request') {
+                    else if (product.Options === "REQUEST" && location.pathname === '/marketplace/request') {
                         return <Buyitem key={product._id} product={product} />;
                     }
-                    else if (product.Options === "RENT" && location.pathname==='/marketplace/rent') {
+                    else if (product.Options === "RENT" && location.pathname === '/marketplace/rent') {
                         return <Buyitem key={product._id} product={product} />;
                     }
                     return ""

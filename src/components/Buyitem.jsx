@@ -19,7 +19,7 @@ const Buyitem = (props) => {
     <>
       <div className='col-md-3 my-3'>
         <div className="product_box card-cover overflow-hidden  rounded-4 mx-3 ">
-          <div className="d-flex flex-column h-100 p-5 text-shadow-1 text-center" id="innercard">
+          <div className="d-flex flex-column h-100 px-5 pt-4 text-shadow-1 text-center" id="innercard">
             <h4 className="display-7 lh-1 fw-bold py-2 fs-5">{product.Product_Name}</h4>
             <img src={product.image} alt="" className="product_image" />
             <p className="services_box_text lead height-cus ">{product.Description}</p>

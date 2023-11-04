@@ -148,6 +148,9 @@ body {
     width: 100%;
     min-height: 12rem;
     object-fit: cover;
+    border: none;
+    border-radius: 9px;
+    margin-bottom: 10px;
 }
 
 .fonts-fam{
@@ -166,4 +169,11 @@ body {
 
 .height-cus{
     min-height: 190px!important;
+}
+
+.No-available-products{
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

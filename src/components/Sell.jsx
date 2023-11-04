@@ -17,7 +17,6 @@ const Sell = (props) => {
         var reader = new FileReader();
         reader.readAsDataURL(e.target.files[0])
         reader.onload = () => {
-            console.log(reader.result)  // base64encoded string
             SetImage(reader.result)
         };
         reader.onerror = error => {
@@ -30,16 +29,53 @@ const Sell = (props) => {
     const context = useContext(ProductContext);
     const { addProduct } = context
 
-    const [product, setProduct] = useState({ Product_Name: "", Description: "", Options: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
+    const [product, setProduct] = useState({
+        Product_Name: "",
+        Description: "",
+        Options: "",
+        Owner_Name: "",
+        College: "",
+        Phone: "",
+        Email: "",
+        Instagram: "",
+        Address: "",
+        Amount: ""
+    })
 
     const handleClick = (e) => {
-        // confirm("Do you want to Continue?")
         e.preventDefault()
-        addProduct(product.Product_Name, product.Description, image, product.Options, product.Owner_Name, product.College, product.Phone, product.Email, product.Instagram, product.Address, product.Amount)
+        const userConfirmation = window.confirm("Do you want to Continue? - Add Product in MarketPlace ");
 
-        setProduct({ Product_Name: "", Description: "", Options: "", Owner_Name: "", College: "", Phone: "", Email: "", Instagram: "", Address: "", Amount: "" })
-        props.showAlert("Added Successfully", "success")
-        history.push('/marketplace')
+        if (userConfirmation) {
+
+            addProduct(product.Product_Name,
+                product.Description, image,
+                product.Options,
+                product.Owner_Name,
+                product.College,
+                product.Phone,
+                product.Email,
+                product.Instagram,
+                product.Address,
+                product.Amount
+            )
+
+            setProduct({
+                Product_Name: "",
+                Description: "",
+                Options: "",
+                Owner_Name: "",
+                College: "",
+                Phone: "",
+                Email: "",
+                Instagram: "",
+                Address: "",
+                Amount: ""
+            })
+
+            props.showAlert("Added Successfully", "success")
+            history.push('/marketplace')
+        }
     }
 
     const onchange = (e) => {
@@ -78,15 +114,41 @@ const Sell = (props) => {
                             <div className="col">
                                 <div className="sell_product_name my-4">
                                     <p className="lead">Product Name</p>
-                                    <input type="text" name="Product_Name" id="product_name" placeholder="PRODUCT NAME" required className="inputbox" onChange={onchange} value={product.Product_Name} />
+                                    <input
+                                        type="text"
+                                        name="Product_Name"
+                                        id="product_name"
+                                        placeholder="PRODUCT NAME"
+                                        className="inputbox"
+                                        onChange={onchange}
+                                        value={product.Product_Name}
+                                        required
+                                    />
                                 </div>
                                 <div className="sell_product_description my-4">
                                     <p className="lead">Provide brief Product Description</p>
-                                    <textarea type="text" name="Description" placeholder="PRODUCT DESCRIPTION" maxLength="200" required className="inputbox" id="product_description" onChange={onchange} value={product.Description} />
+                                    <textarea
+                                        type="text"
+                                        name="Description"
+                                        placeholder="PRODUCT DESCRIPTION"
+                                        maxLength="200"
+                                        className="inputbox"
+                                        id="product_description"
+                                        onChange={onchange}
+                                        value={product.Description}
+                                        required
+                                    />
                                 </div>
                                 <div className="sell_product_image my-4">
                                     <p className="lead">Upload Image</p>
-                                    <input type="file" accept='.png, .jpg, .jpeg' alt="product image" className="inputbox" id="image_upload" onChange={convertToBase64} />
+                                    <input
+                                        type="file"
+                                        accept='.png, .jpg, .jpeg'
+                                        alt="product image"
+                                        className="inputbox"
+                                        id="image_upload"
+                                        onChange={convertToBase64}
+                                    />
                                     {image === "" || image === null ? "" : <img width={30} height={30} src={image} style={{ margin: "0px 10px" }} alt='' />}
                                 </div>
                                 <div className="sell_product_name my-4">
@@ -107,32 +169,98 @@ const Sell = (props) => {
                             <div className="col">
                                 <div className="seller_name my-4">
                                     <p className="lead">Your Name</p>
-                                    <input type="text" name="Owner_Name" id="" placeholder="SELLER NAME" required className="inputbox" onChange={onchange} value={product.Owner_Name} />
+                                    <input
+                                        type="text"
+                                        name="Owner_Name"
+                                        id=""
+                                        placeholder="SELLER NAME"
+                                        className="inputbox"
+                                        onChange={onchange}
+                                        value={product.Owner_Name}
+                                        required
+                                    />
                                 </div>
                                 <div className="seller_college my-4">
                                     <p className="lead">College Name</p>
-                                    <input type="text" name="College" id="" placeholder="COLLEGE NAME" required className="inputbox" onChange={onchange} value={product.College} />
+                                    <input
+                                        type="text"
+                                        name="College"
+                                        id=""
+                                        placeholder="COLLEGE NAME"
+                                        className="inputbox"
+                                        onChange={onchange}
+                                        value={product.College}
+                                        required
+                                    />
                                 </div>
                                 <div className="seller_contact my-4">
                                     <p className="lead">Phone Number</p>
-                                    <input type="tel" name="Phone" id="" placeholder="(+91-XXXXXXXXXX)" pattern="(+91)-[0-9]{10}" maxLength="10" minLength="10" required className="inputbox" onChange={onchange} value={product.Phone} />
+                                    <input
+                                        type="tel"
+                                        name="Phone"
+                                        id=""
+                                        placeholder="(+91-XXXXXXXXXX)"
+                                        pattern="[0-9]{10}"
+                                        maxLength="10"
+                                        minLength="10"
+                                        className="inputbox"
+                                        onChange={onchange}
+                                        value={product.Phone}
+                                        required
+                                    />
                                 </div>
                                 <div className="seller_email my-4">
                                     <p className="lead">Your Email ID</p>
-                                    <input type="email" name="Email" id="" placeholder="YOUR EMAIL ID" className="inputbox" onChange={onchange} value={product.Email} required />
+                                    <input
+                                        type="email"
+                                        name="Email"
+                                        id=""
+                                        placeholder="YOUR EMAIL ID"
+                                        className="inputbox"
+                                        onChange={onchange}
+                                        value={product.Email}
+                                        required
+                                    />
                                 </div>
                                 <div className="seller_instagram my-4">
                                     <p className="lead">Your Instagram (optional)</p>
-                                    <input type="text" name="Instagram" id="" placeholder="INSTAGRAM @" className="inputbox" onChange={onchange} value={product.Instagram} />
+                                    <input
+                                        type="text"
+                                        name="Instagram"
+                                        id=""
+                                        placeholder="INSTAGRAM @"
+                                        pattern="^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$"
+                                        className="inputbox"
+                                        onChange={onchange}
+                                        value={product.Instagram}
+                                    />
                                 </div>
                                 <div className="seller_address my-4">
                                     <p className="lead">Your Address</p>
-                                    <input type="text" name="Address" id="" placeholder="YOUR ADDRESS" className="inputbox" onChange={onchange} value={product.Address} required />
+                                    <input
+                                        type="text"
+                                        name="Address"
+                                        id=""
+                                        placeholder="YOUR ADDRESS"
+                                        className="inputbox"
+                                        onChange={onchange}
+                                        value={product.Address}
+                                        required
+                                    />
                                 </div>
                             </div>
                         </div>
                         <div className="submit mt-3">
-                            <input type="text" name="Amount" id="" placeholder="Amount (Rs.)" className="inputbox mx-2 Amount me-2" onChange={onchange} value={product.Amount} required />
+                            <input
+                                type="text"
+                                name="Amount"
+                                id=""
+                                placeholder="Amount (Rs.)"
+                                className="inputbox mx-2 Amount me-2"
+                                onChange={onchange}
+                                value={product.Amount}
+                                required
+                            />
                             <button type="submit" className="btn btn-outline-info text-xs my-1" id="submit_button">SELL</button>
                         </div>
 

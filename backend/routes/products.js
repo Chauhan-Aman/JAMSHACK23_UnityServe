@@ -30,7 +30,7 @@ router.get('/fetchallproducts', async (req, res) => {
 router.post('/addproduct', fetchuser, [
     body('Product_Name', 'Enter a valid title').isLength({ min: 3 }),
     body('Description', 'Atmost 200 characters').isLength({ max: 200 }),
-    body('Phone', 'Enter a valid Phone Number').isLength({ max: 10 }),
+    body('Phone', 'Must be a 10-digit number').isNumeric().isLength({ min: 10, max: 10 }),
     body('Email', 'Enter a valid email').isEmail()
 ], async (req, res) => {
 

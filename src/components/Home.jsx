@@ -98,22 +98,22 @@ const Home = () => {
                     <h1 className="display-7">Aditya Gupta</h1>
                     <h1 className="display-6 member_post">Frontend-Dev</h1>
                     <p className="lead"></p>
-                    <a href="/"><button type="button" className="btn btn-outline-info  start_button py-2" id="member_button">PORTFOLIO</button></a>
+                    <a href="https://adityagupta.site/" target='__blank'><button type="button" className="btn btn-outline-info  start_button py-2" id="member_button">PORTFOLIO</button></a>
                 </div>
                 <div className="member py-5">
                     <img src="./img/member2.png" alt="" className="member_img" />
                     <h1 className="display-7">Aman Chauhan</h1>
                     <h1 className="display-6 member_post">Backend-Dev</h1>
                     <p className="lead"></p>
-                    <a href="/"><button type="button" className="btn btn-outline-info  start_button py-2" id="member_button">PORTFOLIO</button></a>
+                    <a href="https://chauhan-aman.netlify.app/" target='__blank'><button type="button" className="btn btn-outline-info  start_button py-2" id="member_button">PORTFOLIO</button></a>
                 </div>
-                <div className="member py-5">
+                {/* <div className="member py-5">
                     <img src="./img/member3.png" alt="" className="member_img" />
                     <h1 className="display-7">Anmol Sharma</h1>
                     <h1 className="display-6 member_post">Ui-Ux Designer</h1>
                     <p className="lead"></p>
                     <a href="/"><button type="button" className="btn btn-outline-info  start_button py-2" id="member_button">PORTFOLIO</button></a>
-                </div>
+                </div> */}
             </div>
 
         </>

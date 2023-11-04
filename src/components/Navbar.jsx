@@ -17,12 +17,21 @@ const Navbar = (props) => {
     const [showButtons, setShowButtons] = useState(true)
 
     useEffect(() => {
-        if (location.pathname === '/marketplace') {
+        if (location.pathname === '/marketplace'
+            || '/marketplace/sell'
+            || '/marketplace/rent'
+            || '/marketplace/donate'
+            || '/marketplace/request'
+            || '/login'
+            || 'signup'
+        ) {
             setShowButtons(false);
         } else {
             setShowButtons(true);
         }
     }, [location.pathname]);
+
+    const token = localStorage.getItem('token')
 
     return (
         <>
@@ -53,14 +62,29 @@ const Navbar = (props) => {
                                     </li>
                                 </>
                             }
+                            {
+                                token &&
+                                <li className="nav-item px-2">
+                                    <Link className="nav-link" aria-current="page" to="/myproducts" id={`${location.pathname === "/myproducts" ? "current" : ""}`}>MY PRODUCTS</Link>
+                                </li>
+                            }
                             <li className="nav-item px-2">
-                                {!localStorage.getItem('token') ? <Link className="nav-link" to="/login" id={`${location.pathname === "/login" ? "current" : ""}`} style={{ Cursor: "not-allowed" }}>MARKETPLACE</Link> :
-                                    <Link className="nav-link" to="/marketplace" id={`${location.pathname === "/marketplace" ? "current" : ""}`} style={{ Cursor: "pointer" }}>MARKETPLACE</Link>}
+                                {
+                                    !token ?
+                                        <Link className="nav-link" to="/login" id={`${location.pathname === "/login" ? "current" : ""}`} style={{ Cursor: "not-allowed" }}>MARKETPLACE</Link>
+                                        :
+                                        <Link className="nav-link" to="/marketplace" id={`${(location.pathname === "/marketplace") ? "current" : ""}`} style={{ Cursor: "pointer" }}>MARKETPLACE</Link>
+                                }
                             </li>
                             <div className="nav-item mx-2">
-                                {!localStorage.getItem('token') ? <form className="d-flex" role="search">
-                                    <Link className="btn btn-outline-info text-xs" id="start_button" to="/login" role="button">Login</Link>
-                                </form> : <button className="btn btn-outline-info text-xs" id="start_button" onClick={handleLogout}>Logout</button>}
+                                {
+                                    !token ?
+                                        <form className="d-flex" role="search">
+                                            <Link className="btn btn-outline-info text-xs" id="start_button" to="/login" role="button">Login</Link>
+                                        </form>
+                                        :
+                                        <button className="btn btn-outline-info text-xs" id="start_button" onClick={handleLogout}>Logout</button>
+                                }
                             </div>
 
                         </ul>

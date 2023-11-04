@@ -137,10 +137,41 @@ body {
     width: 300px!important;
     height: 300px!important;
     object-fit: cover;
+    border: none;
+    border-radius: 9px;
 }
 
 .wh-owner{
     width: 50vw!important;
+}
+
+.social_box{
+    display: flex;
+    flex-direction: column;
+}
+
+.social_button_link{
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.social_button_link:hover{
+    transition: all 0.5s ease;
+    letter-spacing: 1px;
+    color: #72B044;
+}
+
+.social_box_link{
+    text-decoration: none;
+    color: white;
+}
+
+.social_box_link:hover{
+    transition: all 0.5s ease;
+    letter-spacing: 1px;
+    color: #72B044;
 }
 
 .buy-prod-page{

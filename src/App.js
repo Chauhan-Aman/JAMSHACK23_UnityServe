@@ -8,6 +8,7 @@ import Alert from './components/Alert';
 import MarketPlace from './components/MarketPlace';
 import Sell from './components/Sell';
 import ProductPage from './components/ProductPage';
+import MyProducts from './components/MyProducts'
 
 import {
   BrowserRouter as Router,
@@ -38,14 +39,15 @@ function App() {
         < Alert alert={alert} />
         <Switch>
           <Route exact path="/">< Home /></Route>
+          <Route exact path="/login">< Login showAlert={showAlert} /></Route>
+          <Route exact path="/signup">< Signup showAlert={showAlert} /></Route>
           <Route exact path="/marketplace">< MarketPlace /></Route>
           <Route exact path="/marketplace/request">< MarketPlace /></Route>
           <Route exact path="/marketplace/rent">< MarketPlace /></Route>
           <Route exact path="/marketplace/donate">< MarketPlace /></Route>
-          <Route path="/product/:productName" ><ProductPage /></Route>
           <Route exact path="/marketplace/sell">< Sell showAlert={showAlert} /></Route>
-          <Route exact path="/login">< Login showAlert={showAlert} /></Route>
-          <Route exact path="/signup">< Signup showAlert={showAlert} /></Route>
+          <Route path="/product/:productName" ><ProductPage /></Route>
+          <Route exact path="/myproducts" ><MyProducts /></Route>
         </Switch>
       </Router>
 
