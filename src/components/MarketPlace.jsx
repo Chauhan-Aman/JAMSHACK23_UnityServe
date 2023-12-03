@@ -22,8 +22,9 @@ const MarketPlace = () => {
                 document.title = "UnityServe-MarketPlace";
             }
         }
-        loading()
         FetchProducts()
+        //eslint-disable-next-line
+        loading()
         // eslint-disable-next-line
     }, [])
 
